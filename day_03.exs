@@ -36,7 +36,7 @@ end
 
 
 map_section =
-  File.read!("inputs/day_03.txt")
+  File.read!("inputs/day_03")
   |> String.split("\n", trim: true)
 
 first_puzzle_rules =

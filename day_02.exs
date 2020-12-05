@@ -1,9 +1,8 @@
 defmodule AOC.DayTwo do
 
 
-  def first_puzzle() do
-    File.read!("inputs/day_2.txt")
-    |> String.split("\n", trim: true)
+  def first_puzzle(passwords) do
+    passwords
     |> Enum.filter(fn line ->
       [rules, <<letter::bytes-size(1), ":">>, password] = String.split(line)
       [min, max ] = String.split(rules, "-") |> Enum.map(& String.to_integer(&1))
@@ -14,9 +13,8 @@ defmodule AOC.DayTwo do
     |> Enum.count
   end
 
-  def second_puzzle() do
-    File.read!("inputs/day_2.txt")
-    |> String.split("\n", trim: true)
+  def second_puzzle(passwords) do
+    passwords
     |> Enum.filter(fn line ->
       [rules, <<letter::bytes-size(1), ":">>, password] = String.split(line)
       candidate_letters =
@@ -30,5 +28,9 @@ defmodule AOC.DayTwo do
 
 end
 
-AOC.DayTwo.first_puzzle()
-AOC.DayTwo.second_puzzle()
+passwords =
+  File.read!("inputs/day_02")
+  |> String.split("\n", trim: true)
+
+AOC.DayTwo.first_puzzle(passwords) |> IO.inspect
+AOC.DayTwo.second_puzzle(passwords) |> IO.inspect
